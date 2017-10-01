@@ -103,7 +103,7 @@ package.json 是配置文件 必须要先配置好才能运行
 本来想用php写的,但是php写得话可能比较麻烦.
 我本人对李敖大师十分敬仰,一直就想把他的语录记下来.待他百年之后,有人在网上吹牛李敖说"xxx"
 我能有勇气发这个图给他.   
-![pic](https://github.com/buffge/spiderSina/tree/master/src/liao.png "我没说过这话")<br/>
+![pic](https://github.com/buffge/spiderSina/master/src/liao.png "我没说过这话")<br/>
 
 开个玩笑,我是为了学习.
 注:我今早准备上传到github,不小心按成提取.导致本地被覆盖了,现在的代码是我用之前构建的反编译回来的.  
