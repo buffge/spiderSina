@@ -1,0 +1,20 @@
+{
+    "sina": {
+        "username": "18061175230",
+        "password": "wuweisb250"
+    },
+    "mysql": {
+        "host": "127.0.0.1",
+        "port": "3306",
+        "username": "buffge",
+        "password": "daimin",
+        "dbname": "sina_liao",
+        "tableName": "message"
+    },
+    "browserDrivers": {
+        "ie": "C:\\projects\\java\\selenium_java\\IEDriverServer.exe",
+        "chrome": "C:\\projects\\java\\selenium_java\\chromedriver.exe",
+        "firefox": "C:\\projects\\java\\selenium_java\\geckodriver.exe"
+    },
+    "browser": "chrome"
+}
