@@ -1,5 +1,5 @@
 # spiderSina
-##selenium 是一个浏览器自动化测试框架.可以模拟用户的所有操作.
+## selenium 是一个浏览器自动化测试框架.可以模拟用户的所有操作. ##
 
 很久以前就想把李敖大师的所有微博爬取下来.一直没空,前天看见群里有人推荐selenium和phantomjs 就学了selenium做了个demo.你们想爬别人的只要把李敖大师的地址换成你要的就行了.phantomjs我还没学,不过我猜他就是去掉ui功能的浏览器.这样可以让爬虫更快.如果专业做爬虫的可以看看.我做这个是玩的.
 
@@ -20,7 +20,7 @@
 >  5. 判断是否有下一页,如果有就到下一页然后进入第四步
 
 ## 打开微博并登录 ##
-###这里的css选择器就当jQuery用###
+### 这里的css选择器就当jQuery用 ###
 
     baseUrl = "https://weibo.com";
     //打开微博主页面
@@ -36,7 +36,7 @@
      //点击登录
      driver.findElement(By.cssSelector("#pl_login_form.login_box div.login_innerwrap div.W_login_form .login_btn")).click();
      
-##触发ajax将一个页面全部显示出来## 
+## 触发ajax将一个页面全部显示出来 ## 
    
      //判断是否有下一页那个按钮 没的就向下拉
      for (int i = 0, scrollY = 5000; i < 20; i++, scrollY += 5000) {
@@ -49,11 +49,12 @@
            jse.executeScript(setscroll);
       }       
 
-##对每一个微博进行判断解析 只获取大师本人的微博 ##
-//获取李大师所有的微博
-List<WebElement> divs = driver.findElements(By.cssSelector("#Pl_Official_MyProfileFeed__23 div>.WB_cardwrap.WB_feed_type"));
-//对每一条微博进行判断是否为正常微博(非别人的点赞) 并进行展开全文 然后插入数据库
-divs.forEach((WebElement ele) -> {
+## 对每一个微博进行判断解析 只获取大师本人的微博 ##
+
+	//获取李大师所有的微博
+	List<WebElement> divs = driver.findElements(By.cssSelector("#Pl_Official_MyProfileFeed__23 div>.WB_cardwrap.WB_feed_type"));
+	//对每一条微博进行判断是否为正常微博(非别人的点赞) 并进行展开全文 然后插入数据库
+	divs.forEach((WebElement ele) -> {
     String isZan = ele.findElement(By.cssSelector("div:first-of-type")).getAttribute("class");
     if (!("WB_cardtitle_b S_line2".equals(isZan))) {
         String weiboContent;
@@ -84,7 +85,7 @@ divs.forEach((WebElement ele) -> {
     }
 });
    
-##判断是否有下一页##
+## 判断是否有下一页 ##
     //查看按钮的文本是否为"下一页" 如果是那就还有下一页
      WebElement nextPage = driver.findElement(By.cssSelector("#Pl_Official_MyProfileFeed__23 .WB_cardwrap.S_bg2>div>a:last-of-type"));
      String strNext = nextPage.getText();
