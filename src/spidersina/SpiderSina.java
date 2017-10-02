@@ -6,17 +6,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import org.hamcrest.core.CombinableMatcher;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -25,8 +19,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * selenium爬虫获取新浪用户所有微博
@@ -221,7 +213,8 @@ public class SpiderSina extends SpiderBase {
         String isZanForOthers = ele.findElement(By.cssSelector("div:first-of-type")).getAttribute("class");
         if (!"WB_cardtitle_b S_line2".equals(isZanForOthers)) {
             String weiboContent;
-            if (this.isElementPresent(By.cssSelector(".WB_feed_detail>.WB_detail>.WB_text.W_f14 a"), ele) && "展开全文".equals(ele.findElement(By.cssSelector(".WB_feed_detail>.WB_detail>.WB_text.W_f14 a")).getText().trim())) {
+            if (this.isElementPresent(By.cssSelector(".WB_feed_detail>.WB_detail>.WB_text.W_f14 a"), ele)
+                    && "展开全文".equals(ele.findElement(By.cssSelector(".WB_feed_detail>.WB_detail>.WB_text.W_f14 a")).getText().trim())) {
                 driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
                 ele.findElement(By.cssSelector(".WB_feed_detail>.WB_detail>.WB_text.W_f14 a")).click();
                 weiboContent = ele.findElement(By.cssSelector(".WB_feed_detail>.WB_detail>div:last-of-type")).getText();
@@ -245,14 +238,8 @@ public class SpiderSina extends SpiderBase {
      *
      * @throws Exception
      */
-    @After
     public void tearDown() throws Exception {
         driver.quit();
-        String verificationErrorString = this.verificationErrors.toString();
-        if (!"".equals(verificationErrorString)) {
-            Assert.fail(verificationErrorString);
-        }
-
     }
 
     /**
