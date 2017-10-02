@@ -1,0 +1,35 @@
+{
+    "sina": {
+        "username": "xxxx",
+        "password": "xxxx"
+    },
+    "mysql": {
+        "host": "127.0.0.1",
+        "port": "3306",
+        "username": "xxxx",
+        "password": "xxxx",
+        "dbname": "sina_liao",
+        "tableName": "message"
+    },
+    "browserDrivers": {
+        "ie": "C:\\projects\\java\\selenium_java\\IEDriverServer.exe",
+        "chrome": "C:\\projects\\java\\selenium_java\\chromedriver.exe",
+        "firefox": "C:\\projects\\java\\selenium_java\\geckodriver.exe",
+        "phantomjs": "C:\\Program Files\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe"
+    },
+    "browser": "chrome",
+    "temp": {
+        "XSSAuditingEnabled": false,
+        "javascriptCanCloseWindows": true,
+        "javascriptCanOpenWindows": true, 
+        "javascriptEnabled": true,
+        "loadImages": true,
+        "localToRemoteUrlAccessEnabled": false, 
+        "userAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1",
+        "webSecurityEnabled": true
+    },
+    "searchUser": "https://weibo.com/u/2134671703?from=myfollow_all",
+    "debug": false
+}
+
+
