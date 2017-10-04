@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +23,6 @@ import static spidersina.SpiderSina.jsObj;
 import static spidersina.SpiderSina.db;
 import static spidersina.SpiderSina.c;
 import static spidersina.SpiderSina.lastOPerationTime;
-import static spidersina.SpiderSina.myqslTable;
 
 /**
  *
@@ -35,6 +35,7 @@ public abstract class SpiderBase {
     protected WebDriver driver;
     protected final StringBuffer verificationErrors = new StringBuffer();
     protected int pageNum = 0;
+    protected String myqslTable;
 
     public final void initJson() throws JSONException {
         jsObj = JsonHelper.ParseJson("./src/config.json");
@@ -54,7 +55,6 @@ public abstract class SpiderBase {
         String mysqlPwd = jsObj.getJSONObject("mysql").getString("password");
         String mysqlDb = jsObj.getJSONObject("mysql").getString("dbname");
         myqslTable = jsObj.getJSONObject("mysql").getString("tableName");
-
         db = new DBhelper(mysqlHost, mysqlPort, mysqlUser, mysqlPwd, mysqlDb);
         if (debug) {
             Date now = new Date();
@@ -68,10 +68,11 @@ public abstract class SpiderBase {
         String browserName = jsObj.getString("browser");
         setBrowser(browserName);
         baseUrl = "https://weibo.com";
-        driver.get(baseUrl);
+//        driver.manage().window().maximize();
         driver.manage().timeouts().setScriptTimeout(5L, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+        driver.get(baseUrl);
+        driver.manage().window().setSize(new Dimension(1920, 1080));
         if (debug) {
             Date now = new Date();
             c.log("初始化浏览器共用时"
@@ -102,7 +103,7 @@ public abstract class SpiderBase {
     public void captureScreenshot(String fileName) {
         Date time = new Date();
         SimpleDateFormat formatDate1 = new SimpleDateFormat("M-d H点m分s秒S");
-        String dirName = "d:/screenshot/";
+        String dirName = "c:\\projects\\java\\selenium_java\\temp\\chromeDir\\capture\\";
         try {
             //指定了OutputType.FILE做为参数传递给getScreenshotAs()方法，其含义是将截取的屏幕以文件形式返回。
             File scrFile = ((TakesScreenshot) driver)

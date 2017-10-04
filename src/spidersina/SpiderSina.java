@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -29,7 +30,6 @@ public class SpiderSina extends SpiderBase {
 
     public static DBhelper db;
     public static JSONObject jsObj;
-    public static String myqslTable;
     public static Common c;
     public static Date beginTime;
     public static Date lastOPerationTime;
@@ -84,31 +84,36 @@ public class SpiderSina extends SpiderBase {
                 prefs.put("profile.default_content_setting_values.notifications", 2);
                 prefs.put("profile.managed_default_content_settings.images", 2);
                 cps.setExperimentalOption("prefs", prefs);
+                cps.setHeadless(true);
                 this.driver = new ChromeDriver(cps);
                 break;
             case "firefox":
                 String firefoxDriverPath = jsObj.getJSONObject("browserDrivers").getString("firefox");
                 System.setProperty("webdriver.gecko.driver", firefoxDriverPath);
+
                 this.driver = new FirefoxDriver();
                 break;
             case "phantomjs":
                 String phantomjsDriverPath = jsObj.getJSONObject("browserDrivers").getString("phantomjs");
+//                Capabilities caps = new Capabilities();
+//                caps.setJavascriptEnabled(true);
+//                caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomjsDriverPath);
+//                caps.setCapability(PhantomJSDriverService.PHANTOMJS_PAGE_SETTINGS_PREFIX, "Y");
+//                caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36");
+//                caps.setCapability("phantomjs.page.settings.cssSelectorsEnabled", true);
+//                caps.setCapability("phantomjs.page.settings.loadImages", false);
+//                caps.setCapability("phantomjs.page.settings.browserConnectionEnabled", true);
+//                caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[]{
+//                    "--web-security=false",
+//                    "--ssl-protocol=any",
+//                    "--ignore-ssl-errors=true", //                        "--webdriver-loglevel=DEBUG"
+//                });
+//                caps.setCapability("takesScreenshot", true);
                 DesiredCapabilities caps = new DesiredCapabilities();
                 caps.setJavascriptEnabled(true);
-                caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomjsDriverPath);
-                caps.setCapability(PhantomJSDriverService.PHANTOMJS_PAGE_SETTINGS_PREFIX, "Y");
-                caps.setCapability("phantomjs.page.settings.userAgent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36");
-                caps.setCapability("phantomjs.page.settings.cssSelectorsEnabled", true);
-                caps.setCapability("phantomjs.page.settings.loadImages", false);
-                caps.setCapability("phantomjs.page.settings.browserConnectionEnabled", true);
-                caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[]{
-                    "--web-security=false",
-                    "--ssl-protocol=any",
-                    "--ignore-ssl-errors=true", //                    "--webdriver-loglevel=DEBUG"
-                });
-                //截屏支持
                 caps.setCapability("takesScreenshot", true);
-                driver = new PhantomJSDriver(caps);
+                caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, phantomjsDriverPath);
+                this.driver = new PhantomJSDriver(caps);
                 break;
             default:
                 throw new ExceptionInInitializerError("浏览器设置错误,请检查名称和路径");

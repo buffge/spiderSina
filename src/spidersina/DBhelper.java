@@ -31,6 +31,7 @@ public class DBhelper {
             Class.forName(this.name);
             this.conn = DriverManager.getConnection(this.url, this.username, this.password);
         } catch (ClassNotFoundException | SQLException localClassNotFoundException) {
+            
         }
     }
 }
