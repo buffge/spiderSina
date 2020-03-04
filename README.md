@@ -1,4 +1,9 @@
 # spiderSina
+
+> 2020-03-04 新增
+> 推荐使用puppeteer 作为爬虫 参考 新浪爬虫仓库 https://github.com/buffge/spider
+
+
 ## selenium 是一个浏览器自动化测试框架.可以模拟用户的所有操作. ##
 
 #### 由于浏览器的适配性 我使用的是chrome进行测试.其他浏览器可能因为<br>
